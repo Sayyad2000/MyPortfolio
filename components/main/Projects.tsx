@@ -20,7 +20,7 @@ const Projects = () => {
         <div className="w-full md:w-1/3">
           <ProjectCard
             src="/ToDo.jpg"
-            title="Deploying a To- Do App Using Docker & AWS EC2"
+            title="Deploying a Python App Using Docker & AWS EC2"
             description="Docker is a containerization platform that enables to create, deploy and run applications easily with the help of containers. Deployment of python application has been done using Docker containers and AWS EC2."
             technologies={["AWS", "Python", "docker", "Putty", "Postman"]}
             githubLink="https://github.com/Sayyad2000"
