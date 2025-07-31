@@ -17,7 +17,7 @@ const Projects = () => {
             githubLink="https://github.com/Sayyad2000"
           />
         </div>
-        <div className="w-full md:w-1/3">
+        <div className="w-full md:w-1/3"> 
           <ProjectCard
             src="/ToDo.jpg"
             title="Deploying a Python App Using Docker & AWS EC2"
