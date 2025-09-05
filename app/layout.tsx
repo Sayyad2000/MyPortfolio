@@ -5,6 +5,12 @@ import StarsCanvas from "@/components/main/StarBackground";
 import Navbar from "@/components/main/Navbar";
 import Footer from "@/components/main/Footer";
 
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {/* other meta */}
+</head>
+
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

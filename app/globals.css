@@ -3,11 +3,13 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
+/* ------------------ */
+/* Typography         */
+/* ------------------ */
 .cursive {
   font-family: "Cedarville Cursive", cursive;
 }
+
 .Welcome-text {
   background: linear-gradient(
       0deg,
@@ -15,11 +17,11 @@
       rgba(255, 255, 255, 0.4)
     ),
     linear-gradient(90.01deg, #e59cff 0.01%, #ba9cff 50.01%, #9cb2ff 100%);
-  background-blend-mode: normal, screen;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .Welcome-box {
   isolation: isolate;
   overflow: hidden;
@@ -29,13 +31,14 @@
   border-radius: 32px;
   box-shadow: inset 0 -7px 11px #a48fff1f;
   display: flex;
-
   position: relative;
-  width: -moz-max-content;
   width: max-content;
-  transition: 0.45s cubic-bezier(0.6, 0.6, 0, 1) box-shadow;
+  transition: box-shadow 0.45s cubic-bezier(0.6, 0.6, 0, 1);
 }
 
+/* ------------------ */
+/* Buttons            */
+/* ------------------ */
 .button-primary {
   background: linear-gradient(
       180deg,
@@ -55,7 +58,9 @@
   box-shadow: inset 0 0 12px #bf97ff70;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
+/* ------------------ */
+/* Scrollbar Hidden   */
+/* ------------------ */
 .scrollbar-hidden {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -64,10 +69,207 @@
   display: none;
 }
 
-
-
+/* ------------------ */
+/* Base Styles        */
+/* ------------------ */
 html {
   scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+img,
+picture,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
+/* ------------------ */
+/* Navbar Animations  */
+/* ------------------ */
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+.mobile-menu-enter {
+  animation: slideDown 0.35s ease forwards;
+}
+.mobile-menu-exit {
+  animation: slideUp 0.25s ease forwards;
+}
+
+/* ------------------ */
+/* Mobile Overrides   */
+/* ------------------ */
+@media (max-width: 430px) {
+  .hero-title {
+    font-size: clamp(1.6rem, 6.8vw, 2.6rem);
+    line-height: 1.2;
+    text-align: left;
+  }
+  .hero-subtitle {
+    font-size: 0.95rem;
+    max-width: 92%;
+    line-height: 1.4;
+    text-align: left;
+  }
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+    padding-inline: 0.75rem;
+  }
+  .hero-tech-visual {
+    display: none;
+  }
+  .section-padding {
+    padding-inline: 1rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+  header,
+  .navbar {
+    height: 56px;
+    padding-inline: 0.75rem;
+  }
+}
+/* ------------------ */
+/* Footer icon fixes  */
+/* ------------------ */
+
+/* Ensure all footer svg icons inherit the current text color and are visible.
+   This overrides inline fills and odd opacity/visibility that some icon svgs ship with. */
+.footer-icon,
+footer svg,
+footer svg path,
+footer svg g {
+  fill: currentColor !important;
+  stroke: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: inline-block !important;
+  width: 1.15em !important;
+  height: 1.15em !important;
+  vertical-align: middle !important;
+}
+
+/* Ensure footer anchors and buttons are clickable (in case an overlay exists).
+   These rules keep interactions in the footer working even if other elements have higher stacking. */
+footer,
+footer a,
+footer button {
+  position: relative;
+  z-index: 9999;              /* keep footer above most page elements */
+  pointer-events: auto !important;
+}
+
+/* ------------------ */
+/* Canvas / Overlay   */
+/* ------------------ */
+
+/* Option 1 (recommended):
+   If your Three.js canvas is decorative (non-interactive), give it the class "three-canvas"
+   and the canvas won't capture clicks. Add the class when you create the renderer or to the Canvas wrapper.
+*/
+.three-canvas {
+  pointer-events: none !important;
+}
+
+/* Example: If you cannot add a class easily, and you *know* the canvas in question is decorative,
+   you can (carefully) enable this global rule to allow clicks through any canvas.
+   WARNING: disable this if your canvas needs to receive pointer events (drag, click, controls).
+*/
+/* Uncomment only if safe for your app:
+canvas { pointer-events: none !important; }
+*/
+
+/* ------------------ */
+/* Small helper style */
+/* ------------------ */
+
+/* make sure the footer background and text still render nicely on mobile */
+footer { 
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* Footer icon sizing - use rem for predictability */
+.footer-icon,
+footer svg {
+  fill: currentColor !important;
+  stroke: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: inline-block !important;
+  width: 1.25rem !important;   /* ~20px */
+  height: 1.25rem !important;  /* ~20px */
+  vertical-align: middle !important;
+}
+
+/* Slightly larger icons on bigger screens */
+@media (min-width: 1024px) {
+  .footer-icon,
+  footer svg {
+    width: 1.35rem !important;  /* ~21.6px */
+    height: 1.35rem !important;
+  }
+}
+
+/* Ensure icon and text alignment */
+footer a span.text-sm {
+  line-height: 1;
+}
+
+/* ------------------ */
+/* Footer Icons Fix   */
+/* ------------------ */
+footer .footer-icon,
+footer svg {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  flex-shrink: 0 !important;
+  fill: currentColor !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+/* Footer link layout */
+footer a,
+footer button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* space between icon & text */
+  white-space: nowrap; /* prevent text wrapping */
+}
+
+/* Ensure consistent text size */
+footer span {
+  font-size: 0.875rem; /* text-sm in Tailwind */
+  line-height: 1.25rem;
+}
 
